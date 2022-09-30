@@ -21,12 +21,15 @@ cp train_dataset.json valid_data.json test_data.json zinc_stock_17_04_20.hdf5 Me
 cd Metro
 
 **Data Process**
+
 python to_canolize.py
 
 **Train**
+
 python train.py --batch_size 64 --epochs 4000
 
 **Test**
+
 python top5_inference.py
 
 
@@ -38,12 +41,14 @@ cp train_dataset.json valid_data.json test_data.json zinc_stock_17_04_20.hdf5 Tr
 cd Transformer
 
 **Data Process**
+
 python to_canolize.py
 
 **Train**
 python train.py --batch_size 64 --epochs 2000
 
 **Test**
+
 python top5_inference.py
 
 
@@ -55,6 +60,7 @@ cp train_dataset.json valid_data.json test_data.json zinc_stock_17_04_20.hdf5 Re
 cd Retrosim
 
 **Test**
+
 python top5_inference.py
 
 
@@ -65,18 +71,22 @@ python top5_inference.py
 cp train_dataset.json valid_data.json test_data.json zinc_stock_17_04_20.hdf5 Neuralsym/
 
 **Model download**
+
 Download the model folder via:
 https://www.dropbox.com/sh/lw8e6epk74vmsh0/AADr0VhLiA6LwC34_Qj0Naufa?dl=0
 mv checkpoint Neuralsym/
 cd Neuralsym
 
 **Data Process**
+
 python prepare_data.py
 
 **Train**
+
 bash train.sh
 
 **Test**
+
 python top5_inference.py
 
 
@@ -90,12 +100,15 @@ pip install -e
 cd gln
 
 **Data Process**
+
 python process_data.py -save_dir data -num_cores 12 -num_parts 1 -fp_degree 2 -f_atoms data/atom_list.txt -retro_during_train False $@
 
 **Train**
+
 bash run_mf.sh schneider
 
 **Test**
+
 python3 top5_inference.py -save_dir data -f_atoms data/atom_list.txt -gpu 0
 
 
@@ -106,6 +119,7 @@ python3 top5_inference.py -save_dir data -f_atoms data/atom_list.txt -gpu 0
 cp train_dataset.json valid_data.json test_data.json zinc_stock_17_04_20.hdf5 Megan/data/
 
 **Model download**
+
 Download the model folder via:
 https://www.dropbox.com/sh/aq9h5jyautjpgrh/AAAv_cC2CiQtYTbP7IKFqQcMa?dl=0
 mv models Megan/
@@ -113,14 +127,17 @@ cd Megan
 source env.sh
 
 **Data Process**
+
 python json2csv.py
 python acquire.py uspto_50k
 python featurize.py uspto_50k megan_16_bfs_randat
 
 **Train**
+
 python bin/train.py uspto_50k models/uspto_50k
 
 **Test**
+
 python bin/top5_inference.py models/uspto_50k --beam-size 5
 
 
@@ -134,6 +151,7 @@ export SEQ_GRAPH_RETRO=/path/to/dir/
 python setup.py develop
 
 **Data Process**
+
 python json2csv.py
 
 python data_process/canonicalize_prod.py --filename train.csv
@@ -146,10 +164,12 @@ python data_process/lg_edits/lg_classifier.py
 python data_process/lg_edits/lg_tensors.py
 
 **Train**
+
 python scripts/benchmarks/run_model.py --config_file configs/single_edit/defaults.yaml
 python scripts/benchmarks/run_model.py --config_file configs/lg_ind/defaults.yaml
 
 **Test**
+
 bash eval.sh
 python scripts/eval/top5_inference.py --edits_exp SingleEdit_20220823_044246 --lg_exp LGIndEmbed_20220823_04432 --edits_step best_model --lg_step best_model --exp_dir models
 
@@ -161,6 +181,7 @@ python scripts/eval/top5_inference.py --edits_exp SingleEdit_20220823_044246 --l
 cp train_dataset.json valid_data.json test_data.json zinc_stock_17_04_20.hdf5 G2Gs/datasets/
 
 **Model download**
+
 Download the model files via:
 https://www.dropbox.com/s/bvrsun8yap4sal9/g2gs_reaction_model.pth?dl=0
 https://www.dropbox.com/s/0n2ff4zbnbml6xq/g2gs_synthon_model.pth?dl=0
@@ -171,6 +192,7 @@ cd G2Gs
 **Train**
 
 **Test**
+
 python script/top5_inference.py -g [0] -k 5 -b 1
 
 
