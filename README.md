@@ -48,6 +48,7 @@ cd Transformer
 python to_canolize.py
 
 **Train**
+
 python train.py --batch_size 64 --epochs 2000
 
 **Test**
