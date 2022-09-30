@@ -165,6 +165,7 @@ mv g2gs_synthon_model.pth g2gs_reaction_model.pth G2Gs/
 cd G2Gs  
 
 **Train**  
+python script/train.py -g [0]  
 
 **Test**  
 python script/top5_inference.py -g [0] -k 5 -b 1  
