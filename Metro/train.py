@@ -103,9 +103,9 @@ for epoch in trange(1, int(args.epochs)+1, desc="Epoch"):
         sum_loss = 0
         for step, batch in enumerate(tqdm(train_dataloader, desc="Iteration")):
             global_step = global_step + 1 / len(train_dataloader_list)
-            args.lr = args.l_factor * min(1.0, global_step/args.warmup) / max(global_step, args.warmup)
+            lr = args.l_factor * min(1.0, global_step/args.warmup) / max(global_step, args.warmup)
             for param_group in optimizer.param_groups:
-                param_group['lr'] = args.lr
+                param_group['lr'] = lr
             model.train()
             optimizer.zero_grad()
             products_ids, reactants_ids, label_ids, products_mask, reactants_mask, memory_mask = batch
