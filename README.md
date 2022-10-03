@@ -96,7 +96,7 @@ python process_data.py -save_dir data -num_cores 12 -num_parts 1 -fp_degree 2 -f
 bash run_mf.sh schneider  
 
 #Test
-python3 top5_inference.py -save_dir data -f_atoms data/atom_list.txt -gpu 0  
+python top5_inference.py -save_dir data -f_atoms data/atom_list.txt -gpu 0  
 ```
 
 
@@ -148,7 +148,6 @@ python scripts/benchmarks/run_model.py --config_file configs/single_edit/default
 python scripts/benchmarks/run_model.py --config_file configs/lg_ind/defaults.yaml  
 
 #Test
-bash eval.sh  
 python scripts/eval/top5_inference.py --edits_exp SingleEdit_20220823_044246 --lg_exp LGIndEmbed_20220823_04432 --edits_step best_model --lg_step best_model --exp_dir models  
 ```
 
