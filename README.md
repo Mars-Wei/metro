@@ -134,6 +134,7 @@ export SEQ_GRAPH_RETRO=/path/to/dir/
 python setup.py develop  
 
 **Data Process**  
+mv datasets/uspto-50k/valid_data.json datasets/uspto-50k/eval_data.json  
 python json2csv.py  
 python data_process/canonicalize_prod.py --filename train.csv  
 python data_process/canonicalize_prod.py --filename eval.csv  
