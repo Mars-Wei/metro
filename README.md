@@ -16,124 +16,124 @@ Please move this file into the root folder.
 
 
 ## Metro 
-
+```bash
 cp train_dataset.json valid_data.json test_data.json zinc_stock_17_04_20.hdf5 Metro/  
 cd Metro  
 
-**Data Process**  
+#Data Process  
 python to_canolize.py  
 
-**Train**  
+#Train 
 python train.py --batch_size 64 --epochs 4000  
 
-**Test**  
+#Test 
 python top5_inference.py  
-
+```
 
 
 
 ## Transformer  
-
+```bash
 cp train_dataset.json valid_data.json test_data.json zinc_stock_17_04_20.hdf5 Transformer/  
 cd Transformer  
 
-**Data Process**  
+#Data Process  
 python to_canolize.py  
 
-**Train**  
+#Train  
 python train.py --batch_size 64 --epochs 2000  
 
-**Test**  
+#Test  
 python top5_inference.py  
-
+```
 
 
 
 ## Retrosim  
-
+```bash
 cp train_dataset.json valid_data.json test_data.json zinc_stock_17_04_20.hdf5 Retrosim/  
 cd Retrosim  
 
-**Test**  
+#Test
 python top5_inference.py  
-
+```
 
 
 
 ## Neuralsym  
-
+```bash
 cp train_dataset.json valid_data.json test_data.json zinc_stock_17_04_20.hdf5 Neuralsym/  
 
-**Model download**  
+#Model download
 Download the model folder via:  
 https://www.dropbox.com/sh/lw8e6epk74vmsh0/AADr0VhLiA6LwC34_Qj0Naufa?dl=0  
 mv checkpoint Neuralsym/  
 cd Neuralsym  
 
-**Data Process**  
+#Data Process
 python prepare_data.py  
 
-**Train**  
+#Train
 bash train.sh  
 
-**Test**  
+#Test
 python top5_inference.py  
-
+```
 
 
 
 ## GLN  
-
+```bash
 cp train_dataset.json valid_data.json test_data.json zinc_stock_17_04_20.hdf5 GLN/gln/  
 cd GLN  
 pip install -e  
 cd gln  
 
-**Data Process**  
+#Data Process 
 python process_data.py -save_dir data -num_cores 12 -num_parts 1 -fp_degree 2 -f_atoms data/atom_list.txt -retro_during_train False $@  
 
-**Train**  
+#Train
 bash run_mf.sh schneider  
 
-**Test**  
+#Test
 python3 top5_inference.py -save_dir data -f_atoms data/atom_list.txt -gpu 0  
-
+```
 
 
 
 ## Megan
-
+```bash
 cp train_dataset.json valid_data.json test_data.json zinc_stock_17_04_20.hdf5 Megan/data/  
 
-**Model download**  
+#Model download
 Download the model folder via:  
 https://www.dropbox.com/sh/aq9h5jyautjpgrh/AAAv_cC2CiQtYTbP7IKFqQcMa?dl=0  
 mv models Megan/  
 cd Megan  
 source env.sh  
 
-**Data Process**  
+#Data Process  
 python json2csv.py  
 python acquire.py uspto_50k  
 python featurize.py uspto_50k megan_16_bfs_randat  
 
-**Train**  
+#Train
 python bin/train.py uspto_50k models/uspto_50k  
 
-**Test**  
+#Test
 python bin/top5_inference.py models/uspto_50k --beam-size 5  
-
+```
 
 
 
 ## GraphRetro  
-
+```bash
 cp train_dataset.json valid_data.json test_data.json zinc_stock_17_04_20.hdf5 GraphRetro/datasets/uspto-50k  
 cd GraphRetro  
 export SEQ_GRAPH_RETRO=/path/to/dir/  
 python setup.py develop  
 
-**Data Process**  
+#Data Process
 mv datasets/uspto-50k/valid_data.json datasets/uspto-50k/eval_data.json  
 python json2csv.py  
 python data_process/canonicalize_prod.py --filename train.csv  
@@ -143,34 +143,34 @@ python data_process/core_edits/bond_edits.py
 python data_process/lg_edits/lg_classifier.py  
 python data_process/lg_edits/lg_tensors.py  
 
-**Train**  
+#Train
 python scripts/benchmarks/run_model.py --config_file configs/single_edit/defaults.yaml  
 python scripts/benchmarks/run_model.py --config_file configs/lg_ind/defaults.yaml  
 
-**Test**  
+#Test
 bash eval.sh  
 python scripts/eval/top5_inference.py --edits_exp SingleEdit_20220823_044246 --lg_exp LGIndEmbed_20220823_04432 --edits_step best_model --lg_step best_model --exp_dir models  
-
+```
 
 
 
 ## G2Gs  
-
+```bash
 cp train_dataset.json valid_data.json test_data.json zinc_stock_17_04_20.hdf5 G2Gs/datasets/  
 
-**Model download**  
+#Model download
 Download the model files via:  
 https://www.dropbox.com/s/bvrsun8yap4sal9/g2gs_reaction_model.pth?dl=0  
 https://www.dropbox.com/s/0n2ff4zbnbml6xq/g2gs_synthon_model.pth?dl=0  
 mv g2gs_synthon_model.pth g2gs_reaction_model.pth G2Gs/  
 cd G2Gs  
 
-**Train**  
+#Train
 python script/train.py -g [0]  
 
-**Test**  
+#Test
 python script/top5_inference.py -g [0] -k 5 -b 1  
-
+```
 
 
 ## Reference  
@@ -182,3 +182,15 @@ G2Gs: https://torchdrug.ai/docs/tutorials/retrosynthesis
 GraphRetro: https://github.com/vsomnath/graphretro  
 Transformer: https://github.com/bigchem/synthesis  
 Megan: https://github.com/molecule-one/megan  
+
+
+
+## Citation
+```
+@article{liu2022metro,
+  title={Metro: Memory-Enhanced Transformer for Retrosynthetic Planning via Reaction Tree},
+  author={Liu, Songtao and Ying, Rex and Zhang, Zuobai and Zhao, Peilin and Lin, Lu and Wu, Dinghao},
+  journal={arXiv preprint arXiv:2209.15315},
+  year={2022}
+}
+```
