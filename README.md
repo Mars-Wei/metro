@@ -1,6 +1,6 @@
 # Metro: Memory-Enhanced Transformer for Retrosynthetic Planning via Reaction Tree  
 
-This repository contains an implementation of ["Metro: Memory-Enhanced Transformer for Retrosynthetic Planning via Reaction Tree"](https://arxiv.org/pdf/2109.03856.pdf).  
+This repository contains an implementation of ["Metro: Memory-Enhanced Transformer for Retrosynthetic Planning via Reaction Tree"](https://arxiv.org/pdf/2209.15315.pdf).  
 
 Note that we provide the model files for all models, you can skip the training and use our provided files for testing directly.  
 
